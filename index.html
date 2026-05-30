@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PaperCalc — Dmytro Lab</title>
+
+  <meta
+          name="description"
+          content="PaperCalc is a paper calculator for print production tasks."
+  />
+</head>
+
+<body>
+<div class="app-shell">
+  <!--<header class="site-header">
+    <a class="logo" href="#">
+      <span class="logo-mark">PC</span>
+      <span class="logo-text">PaperCalc</span>
+    </a>
+
+    <nav class="site-nav">
+      <a href="#">Tool</a>
+      <a href="#">About</a>
+    </nav>
+  </header>-->
+
+  <main>
+   <!-- <section class="hero">
+      <p class="eyebrow">Print Production Tool</p>
+
+      <h1>Paper calculator</h1>
+
+      <p class="hero-text">
+        A clean paper calculation tool for print production. Select paper,
+        enter sheet sizes and calculate material usage.
+      </p>
+    </section>-->
+
+    <section class="calculator-card">
+      <div class="card-header">
+        <div>
+          <p class="eyebrow">Setup</p>
+          <h2>Paper settings</h2>
+        </div>
+
+        <span class="status-pill">draft</span>
+      </div>
+
+      <form class="paper-form" id="paper-form">
+        <label class="field">
+          <span>Paper name</span>
+          <select name="paperName"></select>
+        </label>
+
+        <label class="field">
+          <span>Paper type</span>
+          <select name="paperType"></select>
+        </label>
+
+        <label class="field">
+          <span>Weight</span>
+          <select name="paperWeight"></select>
+        </label>
+
+        <label class="field">
+          <span>Start width, in</span>
+          <input name="startWidth" type="number" inputmode="decimal" step="0.001" value="19" />
+        </label>
+
+        <label class="field">
+          <span>Start length, in</span>
+          <input name="startLength" type="number" inputmode="decimal" step="0.001" value="25" />
+        </label>
+
+        <label class="field">
+          <span>Finish width, in</span>
+          <input name="finishWidth" type="number" inputmode="decimal" step="0.001" value="12" />
+        </label>
+
+        <label class="field">
+          <span>Finish length, in</span>
+          <input name="finishLength" type="number" inputmode="decimal" step="0.001" value="18" />
+        </label>
+
+        <label class="field">
+          <span>Crop width, in</span>
+          <input name="cropWidth" type="number" inputmode="decimal" step="0.001" value="0" />
+        </label>
+
+        <label class="field">
+          <span>Crop length, in</span>
+          <input name="cropLength" type="number" inputmode="decimal" step="0.001" value="0" />
+        </label>
+
+        <label class="field field-wide">
+          <span>Required sheets</span>
+          <input name="requiredSheets" type="number" inputmode="numeric" step="1" value="1000" />
+        </label>
+      </form>
+
+      <div class="result-panel">
+        <p class="preview-title">Calculation result</p>
+
+        <div class="preview-grid">
+          <div>
+            <span>Paper</span>
+            <strong id="preview-paper">—</strong>
+          </div>
+
+          <div>
+            <span>Type</span>
+            <strong id="preview-type">—</strong>
+          </div>
+
+          <div>
+            <span>Weight</span>
+            <strong id="preview-weight">—</strong>
+          </div>
+
+          <div>
+            <span>Total inches</span>
+            <strong id="result-inches">—</strong>
+          </div>
+
+          <div>
+            <span>Total mm</span>
+            <strong id="result-mm">—</strong>
+          </div>
+
+          <div>
+            <span>Elements</span>
+            <strong id="result-elements">—</strong>
+          </div>
+        </div>
+
+        <p id="result-message" class="result-message"></p>
+
+      </div>
+
+      <div class="visualizer-panel">
+        <div class="visualizer-header">
+          <span>Sheet preview</span>
+          <span id="visualizer-size">—</span>
+        </div>
+
+        <svg id="paper-visualizer" role="img" aria-label="Paper layout preview"></svg>
+      </div>
+
+
+    </section>
+  </main>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
