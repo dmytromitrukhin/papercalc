@@ -37,7 +37,7 @@ export default [
                     { value: 80, pricePerUnit: 0.625 },
                     { value: 70, pricePerUnit: 0.562 },
                     { value: 60, pricePerUnit: 0.450},
-                    { value: 50, pricePerUnit: 0.413 },
+                    { value: 50, pricePerUnit: 0.375 },
                 ],
             },
 
