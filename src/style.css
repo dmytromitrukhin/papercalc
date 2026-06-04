@@ -359,7 +359,7 @@ h2 {
 }
 
 .svg-sheet {
-  fill: rgba(148, 163, 184, 0.32);
+  fill: rgb(255 255 255 / 0.61);
 }
 
 .svg-piece {
