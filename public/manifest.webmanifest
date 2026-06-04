@@ -1,0 +1,11 @@
+{
+  "name": "PaperCalc",
+  "short_name": "PaperCalc",
+  "description": "Paper calculator for print production tasks.",
+  "start_url": "/papercalc/",
+  "scope": "/papercalc/",
+  "display": "standalone",
+  "background_color": "#070a0f",
+  "theme_color": "#070a0f",
+  "icons": []
+}
