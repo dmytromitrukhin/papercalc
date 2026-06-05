@@ -72,6 +72,7 @@ export default [
                 type: "Gloss",
                 weights: [
                     { value: 100, pricePerUnit: 1.000 },
+                    { value: 92.5, pricePerUnit: 0.907 },
                     { value: 80, pricePerUnit: 0.812 },
                 ],
             },
