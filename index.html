@@ -3,168 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>PaperCalc — Dmytro Lab</title>
-
-
-  <meta
-          name="description"
-          content="PaperCalc is a paper calculator for print production tasks."
-  />
-
+  <meta name="description" content="PaperCalc is a paper calculator for print production tasks." />
   <meta name="theme-color" content="#070a0f" />
-
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="PaperCalc" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
   <link rel="manifest" href="./manifest.webmanifest" />
-
-
 </head>
-
 <body>
 <div class="app-shell">
-  <!--<header class="site-header">
-    <a class="logo" href="#">
-      <span class="logo-mark">PC</span>
-      <span class="logo-text">PaperCalc</span>
-    </a>
-
-    <nav class="site-nav">
-      <a href="#">Tool</a>
-      <a href="#">About</a>
-    </nav>
-  </header>-->
-
   <main>
-   <!-- <section class="hero">
-      <p class="eyebrow">Print Production Tool</p>
-
-      <h1>Paper calculator</h1>
-
-      <p class="hero-text">
-        A clean paper calculation tool for print production. Select paper,
-        enter sheet sizes and calculate material usage.
-      </p>
-    </section>-->
-
-    <section class="calculator-card">
+    <section class="calculator-card" aria-labelledby="calculator-title">
       <div class="card-header">
         <div>
-          <p class="eyebrow">Setup</p>
-          <h2>Paper settings</h2>
+          <p class="eyebrow">Print production</p>
+          <h1 id="calculator-title">PaperCalc</h1>
+          <p class="intro">Stock sheets, stack height and cutting layout. Updates as you type.</p>
         </div>
-
-        <span class="status-pill">draft</span>
       </div>
 
-      <form class="paper-form" id="paper-form">
-        <label class="field">
-          <span>Paper name</span>
-          <select name="paperName"></select>
+      <form class="paper-form" id="paper-form" aria-label="Paper settings" novalidate>
+        <label class="field field-material field-paper">
+          <span class="field-label">Paper name</span>
+          <select name="paperName" required aria-describedby="paperName-error"></select>
+          <span class="field-error" id="paperName-error"></span>
+        </label>
+        <label class="field field-material">
+          <span class="field-label">Paper type</span>
+          <select name="paperType" required aria-describedby="paperType-error"></select>
+          <span class="field-error" id="paperType-error"></span>
+        </label>
+        <label class="field field-material">
+          <span class="field-label">Weight</span>
+          <select name="paperWeight" required aria-describedby="paperWeight-error"></select>
+          <span class="field-error" id="paperWeight-error"></span>
         </label>
 
         <label class="field">
-          <span>Paper type</span>
-          <select name="paperType"></select>
+          <span class="field-label">Stock width, in</span>
+          <input name="startWidth" type="number" inputmode="decimal" min="0.001" max="10000" step="0.001" value="19" required aria-describedby="dimension-help startWidth-error" />
+          <span class="field-error" id="startWidth-error"></span>
         </label>
+        <label class="field">
+          <span class="field-label">Stock length, in</span>
+          <input name="startLength" type="number" inputmode="decimal" min="0.001" max="10000" step="0.001" value="25" required aria-describedby="dimension-help startLength-error" />
+          <span class="field-error" id="startLength-error"></span>
+        </label>
+        <label class="field">
+          <span class="field-label">Finished width, in</span>
+          <input name="finishWidth" type="number" inputmode="decimal" min="0.001" max="10000" step="0.001" value="12" required aria-describedby="dimension-help finishWidth-error" />
+          <span class="field-error" id="finishWidth-error"></span>
+        </label>
+        <label class="field">
+          <span class="field-label">Finished length, in</span>
+          <input name="finishLength" type="number" inputmode="decimal" min="0.001" max="10000" step="0.001" value="18" required aria-describedby="dimension-help finishLength-error" />
+          <span class="field-error" id="finishLength-error"></span>
+        </label>
+        <p class="form-help" id="dimension-help">Dimensions are in inches, in steps of 0.001.</p>
+
+        <fieldset class="grain-field" aria-describedby="grain-help grainDirection-error">
+          <legend>Grain Direction</legend>
+          <div class="grain-options">
+            <label class="grain-option">
+              <input class="visually-hidden" type="radio" name="grainDirection" value="any" checked aria-describedby="grain-help grainDirection-error" />
+              <span>Any</span>
+            </label>
+            <label class="grain-option">
+              <input class="visually-hidden" type="radio" name="grainDirection" value="lg" aria-describedby="grain-help grainDirection-error" />
+              <span>Long Grain (LG)</span>
+            </label>
+            <label class="grain-option">
+              <input class="visually-hidden" type="radio" name="grainDirection" value="sg" aria-describedby="grain-help grainDirection-error" />
+              <span>Short Grain (SG)</span>
+            </label>
+          </div>
+          <p class="grain-help" id="grain-help">LG: grain follows the longer stock edge. SG: the shorter edge. In either mode, the finished blank's longer edge must cross the grain at 90°. Any allows both orientations.</p>
+          <p class="field-error" id="grainDirection-error"></p>
+        </fieldset>
 
         <label class="field">
-          <span>Weight</span>
-          <select name="paperWeight"></select>
+          <span class="field-label">Total width allowance, in</span>
+          <input name="cropWidth" type="number" inputmode="decimal" min="0" max="10000" step="0.001" value="0" required aria-describedby="allowance-help cropWidth-error" />
+          <span class="field-error" id="cropWidth-error"></span>
         </label>
-
         <label class="field">
-          <span>Start width, in</span>
-          <input name="startWidth" type="number" inputmode="decimal" step="0.001" value="19" />
+          <span class="field-label">Total length allowance, in</span>
+          <input name="cropLength" type="number" inputmode="decimal" min="0" max="10000" step="0.001" value="0" required aria-describedby="allowance-help cropLength-error" />
+          <span class="field-error" id="cropLength-error"></span>
         </label>
-
-        <label class="field">
-          <span>Start length, in</span>
-          <input name="startLength" type="number" inputmode="decimal" step="0.001" value="25" />
-        </label>
-
-        <label class="field">
-          <span>Finish width, in</span>
-          <input name="finishWidth" type="number" inputmode="decimal" step="0.001" value="12" />
-        </label>
-
-        <label class="field">
-          <span>Finish length, in</span>
-          <input name="finishLength" type="number" inputmode="decimal" step="0.001" value="18" />
-        </label>
-
-        <label class="field">
-          <span>Crop width, in</span>
-          <input name="cropWidth" type="number" inputmode="decimal" step="0.001" value="0" />
-        </label>
-
-        <label class="field">
-          <span>Crop length, in</span>
-          <input name="cropLength" type="number" inputmode="decimal" step="0.001" value="0" />
-        </label>
+        <p class="form-help" id="allowance-help">Each allowance is added once to the finished dimension and split equally between its two sides. Use 0 for no allowance.</p>
 
         <label class="field field-wide">
-          <span>Required sheets</span>
-          <input name="requiredSheets" type="number" inputmode="numeric" step="1" value="1000" />
+          <span class="field-label">Required finished blanks</span>
+          <input name="requiredSheets" type="number" inputmode="numeric" min="1" max="1000000000" step="1" value="1000" required aria-describedby="quantity-help requiredSheets-error" />
+          <span class="field-error" id="requiredSheets-error"></span>
         </label>
+        <p class="form-help" id="quantity-help">Enter the number of finished pieces you need, not the number of stock sheets.</p>
       </form>
 
-      <div class="result-panel">
-        <p class="preview-title">Calculation result</p>
-
+      <section class="result-panel" aria-labelledby="result-title">
+        <h2 id="result-title">Paper requirements</h2>
+        <p class="material-summary"><span id="preview-paper">—</span> · <span id="preview-type">—</span> · <span id="preview-weight">—</span></p>
         <div class="preview-grid">
-          <div>
-            <span>Paper</span>
-            <strong id="preview-paper">—</strong>
+          <div class="metric metric-primary">
+            <span>Stock sheets required</span>
+            <strong id="result-sheets">—</strong>
           </div>
-
-          <div>
-            <span>Type</span>
-            <strong id="preview-type">—</strong>
-          </div>
-
-          <div>
-            <span>Weight</span>
-            <strong id="preview-weight">—</strong>
-          </div>
-
-          <div>
-            <span>Total inches</span>
-            <strong id="result-inches">—</strong>
-          </div>
-
-          <div>
-            <span>Total mm</span>
-            <strong id="result-mm">—</strong>
-          </div>
-
-          <div>
-            <span>Elements</span>
+          <div class="metric">
+            <span>Finished blanks per sheet</span>
             <strong id="result-elements">—</strong>
           </div>
+          <div class="metric">
+            <span>Stack height, in</span>
+            <strong id="result-inches">—</strong>
+          </div>
+          <div class="metric">
+            <span>Stack height, mm</span>
+            <strong id="result-mm">—</strong>
+          </div>
         </div>
+        <p id="result-details" class="result-details"></p>
+        <p id="result-layout" class="result-details"></p>
+        <p id="result-message" class="result-message" hidden></p>
+        <p class="result-help">Whole stock sheets, before spoilage or make-ready. Stack height is an estimate for the selected paper.</p>
+      </section>
+      <p id="calculation-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
 
-        <p id="result-message" class="result-message"></p>
-
-      </div>
-
-      <div class="visualizer-panel">
+      <section class="visualizer-panel" aria-labelledby="visualizer-title">
         <div class="visualizer-header">
-          <span>Sheet preview</span>
+          <h2 id="visualizer-title">Cutting layout</h2>
           <span id="visualizer-size">—</span>
         </div>
-
-        <svg id="paper-visualizer" role="img" aria-label="Paper layout preview"></svg>
-      </div>
-
-
+        <div class="visualizer-scroll" tabindex="0" role="region" aria-label="Sheet layout; scroll horizontally for long formats" aria-describedby="visualizer-note">
+          <svg id="paper-visualizer" role="img" aria-labelledby="layout-title" aria-describedby="layout-description" hidden></svg>
+        </div>
+        <p class="visualizer-legend"><span class="legend-normal">Unrotated</span><span class="legend-rotated">Rotated 90°</span></p>
+        <p id="visualizer-note" class="result-help">Enter valid dimensions to see the layout.</p>
+        <p class="result-help">Best of the checked grid and strip layouts; not a guaranteed global optimum. Orientations follow the selected Grain Direction. Press margins are not included.</p>
+      </section>
     </section>
   </main>
 </div>
-
 <script type="module" src="/src/main.js"></script>
 </body>
 </html>
